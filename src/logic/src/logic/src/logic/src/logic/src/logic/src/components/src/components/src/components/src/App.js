@@ -9,12 +9,11 @@ import { userRoles } from './logic/userRoles';
 import { LEVELS } from './constants';
 import { hasAccess } from './auth';
 import repData from './repData';
-
+import { generateAdvice } from '../aiAssistant';
 const reps = repData.map(rep => {
   const promotionStatus = checkPromotion(rep);
-  return { ...rep, ...promotionStatus };
-});
-
+  const advice = generateAdvice(rep);
+return { ...rep, ...promotionStatus, advice };
 function App() {
   return (
     <div>
