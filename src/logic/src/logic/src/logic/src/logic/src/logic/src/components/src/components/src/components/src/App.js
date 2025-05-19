@@ -1,26 +1,27 @@
 import React from 'react';
 import Dashboard from './components/Dashboard';
 import PromotionTable from './components/PromotionTable';
-
+import ProgressBar from './components/ProgressBar';
+import Header from './components/Header';
+import Footer from './components/Footer';
 import { checkPromotion } from './logic/promotionChecker';
 import { userRoles } from './logic/userRoles';
+import { LEVELS } from './constants';
+import { hasAccess } from './auth';
+import repData from './repData';
 
-const reps = [
-  { name: 'Alice', level: 'seniorRep', recruits: 3, production: 3000 },
-  { name: 'Bob', level: 'district', recruits: 5, licenses: 5, teamVolume: 10000 },
-  { name: 'Charlie', level: 'division', licensedLeaders: 3, teamVolume: 15000 },
-];
+const reps = repData.map(rep => {
+  const promotionStatus = checkPromotion(rep);
+  return { ...rep, ...promotionStatus };
+});
 
 function App() {
-  const enrichedReps = reps.map(rep => {
-    const result = checkPromotion(rep);
-    return { ...rep, status: result[rep.level]?.qualifies ? 'Eligible' : 'Not Eligible' };
-  });
-
   return (
     <div>
+      <Header />
       <Dashboard />
-      <PromotionTable reps={enrichedReps} />
+      <PromotionTable reps={reps} />
+      <Footer />
     </div>
   );
 }
