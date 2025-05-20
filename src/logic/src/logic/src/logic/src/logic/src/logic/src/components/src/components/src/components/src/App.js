@@ -4,12 +4,14 @@ import PromotionTable from './components/PromotionTable';
 import ProgressBar from './components/ProgressBar';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import { checkPromotion } from './logic/promotionChecker';
+
+import { checkPromotion } from './logic/promotion';
+import { promotionRules } from './logic/promotionRules';
 import { userRoles } from './logic/userRoles';
 import { LEVELS } from './constants';
 import { hasAccess } from './auth';
 import repData from './repData';
-import { generateAdvice } from '../aiAssistant';
+import { generateAdvice } from './aiAssistant';
 const reps = repData.map(rep => {
   const promotionStatus = checkPromotion(rep);
   const advice = generateAdvice(rep);
