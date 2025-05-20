@@ -1,4 +1,5 @@
-const promotionRules = {
+
+export const promotionRules = {
   seniorRep: {
     recruits: 3,
     production: 3000,
@@ -17,4 +18,5 @@ const promotionRules = {
   },
 };
 
-module.exports = promotionRules;
+
+export default promotionRules;
