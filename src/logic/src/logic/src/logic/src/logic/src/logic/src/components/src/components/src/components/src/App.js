@@ -1,4 +1,6 @@
 import React from 'react';
+import { checkPromotion } from '../../logic/checkPromotion';
+
 import Dashboard from './components/Dashboard';
 import PromotionTable from './components/PromotionTable';
 import ProgressBar from './components/ProgressBar';
